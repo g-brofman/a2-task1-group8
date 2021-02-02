@@ -1,0 +1,24 @@
+---
+title: "Salmon group 8"
+author: "Nicole Schmidt"
+date: "2/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Attach packages and read in and tidy data 
+
+library(tidyverse)
+library(janitor)
+library(here)
+library(lubridate)
+
+willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
+  clean_names() %>% 
+  select(coho, jack_coho, steelhead, date) %>% 
+  mutate(date = lubridate::mdy(date))
+
+
+```
+

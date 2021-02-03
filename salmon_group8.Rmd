@@ -41,8 +41,35 @@ A finalized figure of annual totals for fish passage, for each of the 3 species 
 Add 2 - 3 bulletpoints summarizing major trends you see in the annual totals by species from 2000 - 2010.
 Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
 ```{r}
+# replace na values with zero
+willamette_long[is.na(willamette_long)] = 0 
 
-
+# summarize count by species and year
+fish_year <- willamette_long %>% 
+  mutate(year = year(date))  %>% # pulling just the year from the date
+  replace_na() %>% 
+  group_by(year, fish_species) %>% 
+  summarize(annual_total = sum(value))
+  
+# graphing fish passage by species and year
+ggplot(data = fish_year,
+       aes(x = year,
+           y = annual_total,
+           color = fish_species)) +
+  geom_line() +
+  scale_x_continuous(expand = c(0,0),
+                     breaks = seq(2001,2010,1)) +
+  scale_y_continuous(expand = c(0,0)) +
+  labs(x = "Year",
+       y = "Annual observed",
+       title = "Annual fish passage totals by species") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.5 ))
+  #theme(legend.title = element_text(color = "blue"))
+  #theme(axis.title.x = element_text(hjust = 0.5))
+  #scale_fill_manual(values = c("#21908c80", "#fde72580", "yellow"), # custom colors
+  #                  name = "Fish pecies",
+  #                   labels = c("Coho", "Jack Coho", "Steelhead"))
 
 ```
 

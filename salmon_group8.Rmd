@@ -22,3 +22,7 @@ willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv"))
 
 ```
 
+```{r}
+#Tab 2: Seasonplots
+```
+

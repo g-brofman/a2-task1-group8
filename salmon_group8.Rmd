@@ -27,13 +27,14 @@ willamette_long <- willamette_fish_passage %>%
                names_to = "fish_species",
                names_prefix = NULL,
                values_drop_na = FALSE) # decided not to drop observations with n/a values becuase in Tab 1 it says to change na values to zero
-  
+  # replace na values with zero
+willamette_long[is.na(willamette_long)] = 0 
 
 ```
 
-### Tab 1: Original time series - (Nicole or Mukta?)
+### Tab 1: Original time series - (Nicole)
 
-### Tab 2: Seasonplots - (Nicole or Mukta?)
+### Tab 2: Seasonplots - (Mukta)
 
 ### Tab 3: Annual counts by species - Grace
 This “Summary statistics and analysis” tab should contain: 
@@ -41,8 +42,7 @@ A finalized figure of annual totals for fish passage, for each of the 3 species 
 Add 2 - 3 bulletpoints summarizing major trends you see in the annual totals by species from 2000 - 2010.
 Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
 ```{r}
-# replace na values with zero
-willamette_long[is.na(willamette_long)] = 0 
+
 
 # summarize count by species and year
 fish_year <- willamette_long %>% 

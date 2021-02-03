@@ -5,6 +5,8 @@ date: "2/2/2021"
 output: html_document
 ---
 
+### Overview
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # Attach packages and read in and tidy data 
@@ -19,6 +21,59 @@ willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv"))
   select(coho, jack_coho, steelhead, date) %>% 
   mutate(date = lubridate::mdy(date))
 
+# converting to long format to put all fish species in one column
+willamette_long <- willamette_fish_passage %>% 
+  pivot_longer(1:3,
+               names_to = "fish_species",
+               names_prefix = NULL,
+               values_drop_na = FALSE) # decided not to drop observations with n/a values becuase in Tab 1 it says to change na values to zero
+  # replace na values with zero
+willamette_long[is.na(willamette_long)] = 0 
 
 ```
+
+### Tab 1: Original time series - (Nicole)
+
+### Tab 2: Seasonplots - (Mukta)
+
+### Tab 3: Annual counts by species - Grace
+This “Summary statistics and analysis” tab should contain: 
+A finalized figure of annual totals for fish passage, for each of the 3 species (coho, jack coho, steelhead). You decide if this is in a single panel, or multiple panels. Add a figure caption. 
+Add 2 - 3 bulletpoints summarizing major trends you see in the annual totals by species from 2000 - 2010.
+Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
+```{r}
+
+
+# summarize count by species and year
+fish_year <- willamette_long %>% 
+  mutate(year = year(date))  %>% # pulling just the year from the date
+  replace_na() %>% 
+  group_by(year, fish_species) %>% 
+  summarize(annual_total = sum(value))
+  
+# graphing fish passage by species and year
+ggplot(data = fish_year,
+       aes(x = year,
+           y = annual_total,
+           color = fish_species)) +
+  geom_line() +
+  scale_x_continuous(expand = c(0,0),
+                     breaks = seq(2001,2010,1)) +
+  scale_y_continuous(expand = c(0,0)) +
+  labs(x = "Year",
+       y = "Annual observed",
+       title = "Annual fish passage totals by species") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.5 ))
+  #theme(legend.title = element_text(color = "blue"))
+  #theme(axis.title.x = element_text(hjust = 0.5))
+  #scale_fill_manual(values = c("#21908c80", "#fde72580", "yellow"), # custom colors
+  #                  name = "Fish pecies",
+  #                   labels = c("Coho", "Jack Coho", "Steelhead"))
+
+```
+
+
+
+
 

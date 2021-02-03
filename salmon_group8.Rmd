@@ -75,5 +75,3 @@ ggplot(data = fish_year,
 
 
 
-
-

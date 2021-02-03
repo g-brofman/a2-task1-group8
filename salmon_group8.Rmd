@@ -5,6 +5,8 @@ date: "2/2/2021"
 output: html_document
 ---
 
+### Overview
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # Attach packages and read in and tidy data 
@@ -19,6 +21,32 @@ willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv"))
   select(coho, jack_coho, steelhead, date) %>% 
   mutate(date = lubridate::mdy(date))
 
+# converting to long format to put all fish species in one column
+willamette_long <- willamette_fish_passage %>% 
+  pivot_longer(1:3,
+               names_to = "fish_species",
+               names_prefix = NULL,
+               values_drop_na = FALSE) # decided not to drop observations with n/a values becuase in Tab 1 it says to change na values to zero
+  
 
 ```
+
+### Tab 1: Original time series - (Nicole or Mukta?)
+
+### Tab 2: Seasonplots - (Nicole or Mukta?)
+
+### Tab 3: Annual counts by species - Grace
+This “Summary statistics and analysis” tab should contain: 
+A finalized figure of annual totals for fish passage, for each of the 3 species (coho, jack coho, steelhead). You decide if this is in a single panel, or multiple panels. Add a figure caption. 
+Add 2 - 3 bulletpoints summarizing major trends you see in the annual totals by species from 2000 - 2010.
+Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
+```{r}
+
+
+
+```
+
+
+
+
 

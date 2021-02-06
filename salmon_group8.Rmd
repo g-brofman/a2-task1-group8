@@ -15,6 +15,8 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(lubridate)
+library(tsibble)
+
 
 willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
   clean_names() %>% 
@@ -33,6 +35,29 @@ willamette_long[is.na(willamette_long)] = 0
 ```
 
 ### Tab 1: Original time series - (Nicole)
+Tab 1: Original time series (assign one group member to this part)
+This “Time series” tab should contain: 
+A finalized, static graph of adult passage for coho, jack coho, and steelhead salmon (you decide if these all occupy the same panel, or if they are in separate panels). Add a figure caption. Replace NA values with zero. 
+2 - 3 bulletpoints summarizing major patterns / notable trends in the salmon passage time series data
+Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
+
+```{r}
+# Time series data - tsibble
+
+willamette_ts <- willamette_long %>% 
+   as_tsibble(key = fish_species, index = date) # not sure if key should be fish species or something else? 
+
+ggplot (data = willamette_ts, aes(x = date, y = value))+
+  geom_line(aes(color = fish_species))
+
+# Trends noticed with facet wrap of fish species:
+# Seasonality definite trend
+# Coho seems to have a linear trend 
+# Cyclically appears to occur with jack coho?
+# Outliers with coho salmon high values and jack coho low values 
+# Does not appear to be gaps in the data
+```
+
 
 ### Tab 2: Seasonplots - (Mukta)
 

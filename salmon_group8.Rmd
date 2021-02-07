@@ -2,13 +2,15 @@
 title: "Salmon group 8"
 author: "Nicole Schmidt"
 date: "2/2/2021"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 ### Overview
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 # Attach packages and read in and tidy data 
 
 library(tidyverse)
@@ -18,8 +20,6 @@ library(lubridate)
 library(tsibble)
 library(feasts)
 library(viridis)
-
-
 
 willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
   clean_names() %>% 
@@ -48,18 +48,18 @@ willamette_ts <- willamette_long %>%
 
 ggplot (data = willamette_ts, aes(x = date, y = value))+
   geom_line()+
-  labs(x = "Date", y = "Fish Count", title = "Fish counts at Willamette Falls (2001 - 2002)", subtitle = "Adult passage (fish/day)")+
+  labs(x = "Date", y = "Fish Count", title = "Fish counts at Willamette Falls (2001 - 2010)", subtitle = "Adult passage (fish/day)")+
   facet_wrap(~fish_species, nrow = 3, 
              labeller = labeller(fish_species =
                                    c("coho" = "Coho",
                                    "jack_coho" = "Jack Coho",
                                    "steelhead" = "Steehead")))+
-  theme_bw()
+  theme_classic()
 
 ```
 - There is a linear and seasonal trend for Coho. Between 2002 and 2010 the adult passage in fish per day for Coho has increased. 
 - Jack Coho experiences a seasonal trend, but adult passage for Jack Coho is less successful than for Coho or Steelhead.  
-- Steelhead experiences seasonal and cyclical patterns
+- Steelhead experiences seasonal patterns
 
 ### Tab 2: Seasonplots - (Mukta)
 This “Seasonplots” tab should contain: 

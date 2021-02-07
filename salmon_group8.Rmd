@@ -35,29 +35,28 @@ willamette_long[is.na(willamette_long)] = 0
 ```
 
 ### Tab 1: Original time series - (Nicole)
-Tab 1: Original time series (assign one group member to this part)
-This “Time series” tab should contain: 
-A finalized, static graph of adult passage for coho, jack coho, and steelhead salmon (you decide if these all occupy the same panel, or if they are in separate panels). Add a figure caption. Replace NA values with zero. 
-2 - 3 bulletpoints summarizing major patterns / notable trends in the salmon passage time series data
-Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
 
-```{r}
-# Time series data - tsibble
+```{r, fig.cap= **Figure 1.** Fish counts at Willamette Falls from 2001 - 2002 for Coho, Jack Coho, and Steelhead species. The graph represents adult passage of fish per day  }
+
+# Time series- tsibble
 
 willamette_ts <- willamette_long %>% 
    as_tsibble(key = fish_species, index = date) # not sure if key should be fish species or something else? 
 
 ggplot (data = willamette_ts, aes(x = date, y = value))+
-  geom_line(aes(color = fish_species))
+  geom_line()+
+  labs(x = "Date", y = "Fish Count", title = "Fish counts at Willamette Falls (2001 - 2002)", subtitle = "Adult passage (fish/day)")+
+  facet_wrap(~fish_species, nrow = 3, 
+             labeller = labeller(fish_species =
+                                   c("coho" = "Coho",
+                                   "jack_coho" = "Jack Coho",
+                                   "steelhead" = "Steehead")))+
+  theme_bw()
 
-# Trends noticed with facet wrap of fish species:
-# Seasonality definite trend
-# Coho seems to have a linear trend 
-# Cyclically appears to occur with jack coho?
-# Outliers with coho salmon high values and jack coho low values 
-# Does not appear to be gaps in the data
 ```
-
+- There is a linear and seasonal trend for Coho. Between 2002 and 2010 the adult passage in fish per day for Coho has increased. 
+- Jack Coho experiences a seasonal trend, but adult passage for Jack Coho is less successful than for Coho or Steelhead.  
+- Steelhead experiences seasonal and cyclical patterns
 
 ### Tab 2: Seasonplots - (Mukta)
 

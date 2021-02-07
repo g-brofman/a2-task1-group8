@@ -16,6 +16,9 @@ library(janitor)
 library(here)
 library(lubridate)
 library(tsibble)
+library(feasts)
+library(viridis)
+
 
 
 willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
@@ -59,6 +62,35 @@ ggplot (data = willamette_ts, aes(x = date, y = value))+
 - Steelhead experiences seasonal and cyclical patterns
 
 ### Tab 2: Seasonplots - (Mukta)
+This “Seasonplots” tab should contain: 
+
+-A finalized seasonplot for each species (coho, jack coho, steelhead). You can either facet, or use patchwork, to make the figure. Add a caption. 
+-Add 2 - 3 bulletpoints summarizing the major trends you see in the seasonplots.
+-Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
+
+```{r}
+#Seasonplot
+willamette_ts_season <- willamette_long %>% 
+   as_tsibble(key = fish_species, index = date)
+
+#Create color-blind friendly color palette (from r-cookbook)
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+willamette_ts_season %>% 
+  gg_season(y = value) + 
+  facet_wrap(~fish_species,
+             scales = "fixed") +
+  labs(title = "Seasonal Variation in Williamette Falls salmon passage",
+       x = "Month",
+       y = "Count",
+       caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ") +
+  scale_fill_manual(values = cbPalette) +
+  theme_classic()
+
+#Trends Noticed: 1) Coho salmon had the highest seasonal peak in 2010. 2) Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June 3) Steelhead salmon have a longer passage period than coho and jack-coho
+```
+
+
 
 ### Tab 3: Annual counts by species - Grace
 This “Summary statistics and analysis” tab should contain: 

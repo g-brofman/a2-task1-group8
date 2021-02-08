@@ -110,22 +110,25 @@ fish_year <- willamette_long %>%
 # graphing fish passage by species and year
 ggplot(data = fish_year,
        aes(x = year,
-           y = annual_total,
-           color = fish_species)) +
-  geom_line() +
+           y = annual_total)) +
+  geom_line(aes(color = fish_species)) +
   scale_x_continuous(expand = c(0,0),
                      breaks = seq(2001,2010,1)) +
   scale_y_continuous(expand = c(0,0)) +
   labs(x = "Year",
        y = "Annual observed",
-       title = "Annual fish passage totals by species") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.5 ))
-  #theme(legend.title = element_text(color = "blue"))
-  #theme(axis.title.x = element_text(hjust = 0.5))
-  #scale_fill_manual(values = c("#21908c80", "#fde72580", "yellow"), # custom colors
-  #                  name = "Fish pecies",
-  #                   labels = c("Coho", "Jack Coho", "Steelhead"))
+       title = "Annual fish passage totals by species (2001-2010)",
+       caption = "Figure 3: Annual fish passage totals for Coho, Jack Coho, and Steelhead  passage from 2001 - 2010 ") +
+  theme(plot.title = element_text(hjust = -1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.5 )) +
+  theme_classic() +
+  scale_color_discrete(name = "Fish species", 
+                       breaks = c("coho", "jack_coho", "steelhead"),
+                       labels = c("Coho", "Jack Coho", "Steelhead")) +
+  scale_color_manual(values = cbPalette) 
+
+
+# edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 
 ```
 

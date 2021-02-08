@@ -88,11 +88,16 @@ willamette_ts_season %>%
        y = "Count",
        caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ") +
   scale_fill_manual(values = cbPalette) +
-  theme_classic()
-
-#Trends Noticed: 1) Coho salmon had the highest seasonal peak in 2010. 2) Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June 3) Steelhead salmon have a longer passage period than coho and jack-coho
+  theme_classic() +
+  scale_color_continuous(name = "Year", 
+                       breaks = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"),
+                      labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010")) +
+  scale_fill_manual(values = cbPalette) 
 ```
 
+- 1) Coho salmon's highest seasonal peak was in 2010. 
+- 2) Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June. 
+- 3) Steelhead salmon have a longer passage period than coho and jack-coho
 
 
 ### Tab 3: Annual counts by species - Grace

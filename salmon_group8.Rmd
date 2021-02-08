@@ -131,4 +131,7 @@ ggplot(data = fish_year,
 # edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 
 ```
+Summary statistics and analysis: major trends
+- Steelhead experienced a general decline in annual observed fish passage from 2001 -2009, with a sharp increase in passage in 2010. More data would be need to know if 2010 indicates a change in negative trend or if passage will generally continue to decline.
+- Coho and Jack Coho fish passage observations were signifantly lower than Steelhead from 2001 - 2008. In 2009, Coho passage increased sixfold to surpass Steelhead observations for that year, while Jack Coho counts stayed constant.
 

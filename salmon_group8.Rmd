@@ -16,6 +16,15 @@ The Columbia River Data Access in Real Time [(DART)](http://www.cbr.washington.e
 **Image 1:** Willamette Falls Fish Ladder, circa 1913
 **Source:** [Old Oregon Photos](https://www.oldoregonphotos.com/fish-ladder-at-willamette-falls-1913.html)
 
+
+<br>
+
+![](fish_ladder_map.jpeg)
+**Image 2:** Map of the Willamette Falls fish ladder.
+**Source:** [US Army Corp of Engineers](https://media.defense.gov/2017/May/23/2001751687/-1/-1/1/DRAFT%20WFL%20INTEGRATED%20DISPOSITION%20STUDY%20AND%20EA.PDF)
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 # Attach packages and read in and tidy data 
@@ -45,7 +54,11 @@ willamette_long[is.na(willamette_long)] = 0
 
 ```
 
+
+
+
 ### **Tab 1:** Daily time series 
+
 
 ```{r}
 
@@ -137,7 +150,8 @@ ggplot(data = fish_year,
   scale_color_discrete(name = "Fish species", 
                        breaks = c("coho", "jack_coho", "steelhead"),
                        labels = c("Coho", "Jack Coho", "Steelhead")) 
-scale_color_manual(values = cbPalette) 
+
+#scale_color_manual(values = cbPalette) 
 
 # edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 
@@ -147,3 +161,5 @@ Summary statistics and analysis: major trends
 - Steelhead experienced a general decline in annual observed fish passage from 2001 -2009, with a sharp increase in passage in 2010. More data would be need to know if 2010 indicates a change in negative trend or if passage will generally continue to decline.
 - Coho and Jack Coho fish passage observations were signifantly lower than Steelhead from 2001 - 2008. In 2009, Coho passage increased sixfold to surpass Steelhead observations for that year, while Jack Coho counts stayed constant.
 
+### **References:**
+U.S. Army Corps of Engineers, NWD, Chelan, Douglas, Grant County PUDs, Yakima Klickitat Fisheries Project, Colville Tribes Fish & Wildlife (OBMEP), Oregon Department of Fish & Wildlife, Washington Department of Fish & Wildlife., Colombia Basin Research Data Access in Real Time., Retrieved from: (http://www.cbr.washington.edu/dart/query/adult_proj_sum) 

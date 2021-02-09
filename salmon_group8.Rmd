@@ -16,6 +16,8 @@ The Columbia River Data Access in Real Time [(DART)](http://www.cbr.washington.e
 **Image 1:** Willamette Falls Fish Ladder, circa 1913
 **Source:** [Old Oregon Photos](https://www.oldoregonphotos.com/fish-ladder-at-willamette-falls-1913.html)
 
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 # Attach packages and read in and tidy data 
@@ -44,6 +46,7 @@ willamette_long <- willamette_fish_passage %>%
 willamette_long[is.na(willamette_long)] = 0 
 
 ```
+
 
 ### **Tab 1:** Original time series 
 
@@ -141,7 +144,8 @@ ggplot(data = fish_year,
   scale_color_discrete(name = "Fish species", 
                        breaks = c("coho", "jack_coho", "steelhead"),
                        labels = c("Coho", "Jack Coho", "Steelhead")) 
-scale_color_manual(values = cbPalette) 
+
+#scale_color_manual(values = cbPalette) 
 
 # edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 

@@ -7,7 +7,13 @@ output:
     code_folding: hide
 ---
 
-### Overview
+## Overview {.tabset}
+
+**Summary:**
+The Columbia River Data Access in Real Time [(DART)](http://www.cbr.washington.edu/dart/query/adult_daily) program is part of the University of Washington's Columbia Basin Research program. DART provides access to various environmental, riparian, and oceanic data, including salmonid-specific observations. This report utilizes DART data to explore adult fish passage from 2001 - 2010 at the Willamette Falls fish ladder on the Willamette River (Image 1). Included in the report are visualizations of various time series, seasonal patterns of fish observations, and annual fish species counts.
+![](fish_ladder.jpg)
+**Image 1:** Willamette Falls Fish Ladder, circa 1913
+**Source:** [Old Oregon Photos](https://www.oldoregonphotos.com/fish-ladder-at-willamette-falls-1913.html)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
@@ -37,7 +43,7 @@ willamette_long[is.na(willamette_long)] = 0
 
 ```
 
-### Tab 1: Original time series - (Nicole)
+### **Tab 1:** Original time series 
 
 ```{r}
 
@@ -66,7 +72,7 @@ ggplot (data = willamette_ts, aes(x = date, y = value))+
 
 - Steelhead experiences seasonal patterns
 
-### Tab 2: Seasonplots - (Mukta)
+### **Tab 2:** Seasonplots
 This “Seasonplots” tab should contain: 
 
 -A finalized seasonplot for each species (coho, jack coho, steelhead). You can either facet, or use patchwork, to make the figure. Add a caption. 
@@ -102,11 +108,8 @@ willamette_ts_season %>%
 - 3) Steelhead salmon have a longer passage period than coho and jack-coho
 
 
-### Tab 3: Annual counts by species - Grace
-This “Summary statistics and analysis” tab should contain: 
-A finalized figure of annual totals for fish passage, for each of the 3 species (coho, jack coho, steelhead). You decide if this is in a single panel, or multiple panels. Add a figure caption. 
-Add 2 - 3 bulletpoints summarizing major trends you see in the annual totals by species from 2000 - 2010.
-Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
+### **Tab 3:** Annual counts by species
+
 ```{r}
 
 
@@ -128,7 +131,8 @@ ggplot(data = fish_year,
   labs(x = "Year",
        y = "Annual observed",
        title = "Annual fish passage totals by species (2001-2010)",
-       caption = "Figure 3: Annual fish passage totals for Coho, Jack Coho, and Steelhead  passage from 2001 - 2010 ") +
+       caption = "Figure 3: Annual fish passage totals for Coho, Jack Coho, and Steelhead  passage from 2001 - 2010 ",
+      fill = "Fish species") +
   theme(plot.title = element_text(hjust = -1)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 0.5 )) +
   theme_classic() +
@@ -142,6 +146,7 @@ ggplot(data = fish_year,
 
 ```
 Summary statistics and analysis: major trends
+
 - Steelhead experienced a general decline in annual observed fish passage from 2001 -2009, with a sharp increase in passage in 2010. More data would be need to know if 2010 indicates a change in negative trend or if passage will generally continue to decline.
 - Coho and Jack Coho fish passage observations were signifantly lower than Steelhead from 2001 - 2008. In 2009, Coho passage increased sixfold to surpass Steelhead observations for that year, while Jack Coho counts stayed constant.
 

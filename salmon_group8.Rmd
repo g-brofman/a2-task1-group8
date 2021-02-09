@@ -24,6 +24,8 @@ The Columbia River Data Access in Real Time [(DART)](http://www.cbr.washington.e
 **Source:** [US Army Corp of Engineers](https://media.defense.gov/2017/May/23/2001751687/-1/-1/1/DRAFT%20WFL%20INTEGRATED%20DISPOSITION%20STUDY%20AND%20EA.PDF)
 
 
+<br>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
@@ -56,8 +58,8 @@ willamette_long[is.na(willamette_long)] = 0
 
 
 
-
 ### **Tab 1:** Daily time series 
+
 
 
 ```{r}

@@ -1,7 +1,7 @@
 ---
 title: "Salmon Group 8"
 author: "Grace Brofman, Mukta Kelkar, Nicole Schmidt"
-date: "2/2/2021"
+date: "2/8/2021"
 output: 
   html_document:
     code_folding: hide
@@ -27,6 +27,7 @@ library(lubridate)
 library(tsibble)
 library(feasts)
 library(viridis)
+
 
 willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
   clean_names() %>% 
@@ -139,9 +140,8 @@ ggplot(data = fish_year,
   theme_classic() +
   scale_color_discrete(name = "Fish species", 
                        breaks = c("coho", "jack_coho", "steelhead"),
-                       labels = c("Coho", "Jack Coho", "Steelhead")) +
-  scale_color_manual(values = cbPalette) 
-
+                       labels = c("Coho", "Jack Coho", "Steelhead")) 
+scale_color_manual(values = cbPalette) 
 
 # edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 

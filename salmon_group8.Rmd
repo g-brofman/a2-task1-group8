@@ -16,13 +16,14 @@ The Columbia River Data Access in Real Time [(DART)](http://www.cbr.washington.e
 **Image 1:** Willamette Falls Fish Ladder, circa 1913
 **Source:** [Old Oregon Photos](https://www.oldoregonphotos.com/fish-ladder-at-willamette-falls-1913.html)
 
+
 <br>
 
 ![](fish_ladder_map.jpeg)
 **Image 2:** Map of the Willamette Falls fish ladder.
 **Source:** [US Army Corp of Engineers](https://media.defense.gov/2017/May/23/2001751687/-1/-1/1/DRAFT%20WFL%20INTEGRATED%20DISPOSITION%20STUDY%20AND%20EA.PDF)
 
-<br>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
@@ -53,7 +54,11 @@ willamette_long[is.na(willamette_long)] = 0
 
 ```
 
+
+
+
 ### **Tab 1:** Daily time series 
+
 
 ```{r}
 
@@ -149,7 +154,8 @@ ggplot(data = fish_year,
   scale_color_discrete(name = "Fish species", 
                        breaks = c("coho", "jack_coho", "steelhead"),
                        labels = c("Coho", "Jack Coho", "Steelhead")) 
-scale_color_manual(values = cbPalette) 
+
+#scale_color_manual(values = cbPalette) 
 
 # edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 

@@ -5,6 +5,7 @@ date: "2/8/2021"
 output: 
   html_document:
     code_folding: hide
+    theme: readable
 ---
 
 ## Overview {.tabset}
@@ -74,39 +75,39 @@ ggplot (data = willamette_ts, aes(x = date, y = value))+
 - Steelhead experiences seasonal patterns
 
 ### **Tab 2:** Seasonplots
-This “Seasonplots” tab should contain: 
-
--A finalized seasonplot for each species (coho, jack coho, steelhead). You can either facet, or use patchwork, to make the figure. Add a caption. 
--Add 2 - 3 bulletpoints summarizing the major trends you see in the seasonplots.
--Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
-
+ 
 ```{r}
-#Seasonplot
+#Wrangle data for use in seasonplot
 willamette_ts_season <- willamette_long %>% 
    as_tsibble(key = fish_species, index = date)
 
 #Create color-blind friendly color palette (from r-cookbook)
-cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#c71585", "#458b74")
 
+#Create Seasonplot
 willamette_ts_season %>% 
   gg_season(y = value) + 
-  facet_wrap(~fish_species,
-             scales = "fixed") +
+  facet_wrap(~ fish_species,   #make a different plot for each fish species
+             scales = "fixed") +   #fix the y axis 
   labs(title = "Seasonal Variation in Williamette Falls salmon passage",
        x = "Month",
        y = "Count",
-       caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ") +
-  scale_fill_manual(values = cbPalette) +
+       caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ",
+       color = "Year") +  #label the legend
   theme_classic() +
-  scale_color_continuous(name = "Year", 
-                       breaks = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"),
+  scale_fill_continuous(
+                      breaks = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"),
                       labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010")) +
-  scale_fill_manual(values = cbPalette) 
+  theme(legend.position = "right") +
+  scale_fill_viridis_c() 
 ```
+<br>
 
-- 1) Coho salmon's highest seasonal peak was in 2010. 
-- 2) Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June. 
-- 3) Steelhead salmon have a longer passage period than coho and jack-coho
+- Coho salmon's highest seasonal peak was in 2010.
+
+- Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June. 
+
+- Steelhead salmon have a longer passage period than coho and jack-coho
 
 
 ### **Tab 3:** Annual counts by species

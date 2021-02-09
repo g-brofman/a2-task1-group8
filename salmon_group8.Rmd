@@ -45,7 +45,7 @@ willamette_long[is.na(willamette_long)] = 0
 
 ```
 
-### **Tab 1:** Original time series 
+### **Tab 1:** Daily time series 
 
 ```{r}
 
@@ -95,11 +95,7 @@ willamette_ts_season %>%
        caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ",
        color = "Year") +  #label the legend
   theme_classic() +
-  scale_fill_continuous(
-                      breaks = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"),
-                      labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010")) +
-  theme(legend.position = "right") +
-  scale_fill_viridis_c() 
+  theme(legend.position = "right")
 ```
 <br>
 

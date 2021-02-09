@@ -1,6 +1,6 @@
 ---
-title: "Salmon group 8"
-author: "Nicole Schmidt"
+title: "Salmon Group 8"
+author: "Grace Brofman, Mukta Kelkar, Nicole Schmidt"
 date: "2/2/2021"
 output: 
   html_document:
@@ -39,7 +39,7 @@ willamette_long[is.na(willamette_long)] = 0
 
 ### Tab 1: Original time series - (Nicole)
 
-```{r, fig.cap= **Figure 1.** Fish counts at Willamette Falls from 2001 - 2002 for Coho, Jack Coho, and Steelhead species. The graph represents adult passage of fish per day  }
+```{r}
 
 # Time series- tsibble
 
@@ -48,7 +48,8 @@ willamette_ts <- willamette_long %>%
 
 ggplot (data = willamette_ts, aes(x = date, y = value))+
   geom_line()+
-  labs(x = "Date", y = "Fish Count", title = "Fish counts at Willamette Falls (2001 - 2010)", subtitle = "Adult passage (fish/day)")+
+  labs(x = "Date", y = "Fish Count", title = "Fish counts at Willamette Falls (2001 - 2010)", subtitle = "Adult passage (fish/day)",
+       caption = "Figure 1: Time series of Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 (fish/ day)")+
   facet_wrap(~fish_species, nrow = 3, 
              labeller = labeller(fish_species =
                                    c("coho" = "Coho",
@@ -57,8 +58,12 @@ ggplot (data = willamette_ts, aes(x = date, y = value))+
   theme_classic()
 
 ```
-- There is a linear and seasonal trend for Coho. Between 2002 and 2010 the adult passage in fish per day for Coho has increased. 
-- Jack Coho experiences a seasonal trend, but adult passage for Jack Coho is less successful than for Coho or Steelhead.  
+<br>
+
+- There is a linear and seasonal trend for Coho. Between 2002 and 2010 the adult passage in fish per day for Coho has increased.
+
+- Jack Coho experiences a seasonal trend, but adult passage for Jack Coho is less successful than for Coho or Steelhead.
+
 - Steelhead experiences seasonal patterns
 
 ### Tab 2: Seasonplots - (Mukta)
@@ -85,11 +90,16 @@ willamette_ts_season %>%
        y = "Count",
        caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ") +
   scale_fill_manual(values = cbPalette) +
-  theme_classic()
-
-#Trends Noticed: 1) Coho salmon had the highest seasonal peak in 2010. 2) Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June 3) Steelhead salmon have a longer passage period than coho and jack-coho
+  theme_classic() +
+  scale_color_continuous(name = "Year", 
+                       breaks = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"),
+                      labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010")) +
+  scale_fill_manual(values = cbPalette) 
 ```
 
+- 1) Coho salmon's highest seasonal peak was in 2010. 
+- 2) Coho and jack-coho experience peaks in October, while Steelhead salmon experience peaks in June. 
+- 3) Steelhead salmon have a longer passage period than coho and jack-coho
 
 
 ### Tab 3: Annual counts by species - Grace

@@ -16,13 +16,16 @@ The Columbia River Data Access in Real Time [(DART)](http://www.cbr.washington.e
 **Image 1:** Willamette Falls Fish Ladder, circa 1913
 **Source:** [Old Oregon Photos](https://www.oldoregonphotos.com/fish-ladder-at-willamette-falls-1913.html)
 
+
 <br>
 
 ![](fish_ladder_map.jpeg)
 **Image 2:** Map of the Willamette Falls fish ladder.
 **Source:** [US Army Corp of Engineers](https://media.defense.gov/2017/May/23/2001751687/-1/-1/1/DRAFT%20WFL%20INTEGRATED%20DISPOSITION%20STUDY%20AND%20EA.PDF)
 
+
 <br>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
@@ -53,7 +56,11 @@ willamette_long[is.na(willamette_long)] = 0
 
 ```
 
+
+
 ### **Tab 1:** Daily time series 
+
+
 
 ```{r}
 
@@ -103,11 +110,7 @@ willamette_ts_season %>%
        caption = "Figure 2: Coho, Jack coho, and steelhead salmon passage from 2001 - 2010 ",
        color = "Year") +  #label the legend
   theme_classic() +
-  scale_fill_continuous(
-                      breaks = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"),
-                      labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010")) +
-  theme(legend.position = "right") +
-  scale_fill_viridis_c() 
+  theme(legend.position = "right")
 ```
 <br>
 
@@ -149,7 +152,8 @@ ggplot(data = fish_year,
   scale_color_discrete(name = "Fish species", 
                        breaks = c("coho", "jack_coho", "steelhead"),
                        labels = c("Coho", "Jack Coho", "Steelhead")) 
-scale_color_manual(values = cbPalette) 
+
+#scale_color_manual(values = cbPalette) 
 
 # edited legend labels from http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
 
